@@ -52,11 +52,12 @@ class GaussianNaiveBayes:
         #Add small value to variance to avoid division by zero
         epsilon = 1e-9
 
-        # Using Gaussian probability density function
-        numerator = np.exp(-((x - mean) ** 2) / (2 * (var + epsilon)))
-        denominator = np.sqrt(2 * np.pi * (var + epsilon))
+        # Using Gaussian log-probability for each feature
+        numerator = -((x - mean) ** 2) / (2 * (var + epsilon))
+        denominator = -0.5 * np.log(2 * np.pi * (var + epsilon))
 
-        log_likelihood = np.sum(numerator / denominator)
+        #combine log-probabilities of all features
+        log_likelihood = np.sum(numerator + denominator)
         return log_likelihood
 
     def _calculate_posterior(self, x):
