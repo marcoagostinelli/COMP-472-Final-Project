@@ -22,8 +22,16 @@ print("Confusion Matrix:")
 print(confusion_matrix(y_test, y_pred))
 
 # --- Scratch Version ---
-print("\n=== From Scratch Decision Tree ===")
-tree = DecisionTreeClassifierScratch(max_depth=50)
+print("\n=== From-Scratch Decision Tree ===")
+tree = DecisionTreeClassifierScratch(max_depth=10) #can adjust max_depth as needed to test 
 tree.fit(X_train, y_train)
-y_pred_scratch = tree.predict(X_test)
-print("Accuracy:", np.mean(y_pred_scratch == y_test))
+
+# Make sure predictions are a NumPy array
+y_pred_scratch = np.array(tree.predict(X_test))
+
+acc_scratch = accuracy_score(y_test, y_pred_scratch)
+print(f"Accuracy: {acc_scratch:.4f}")
+print("Classification Report:")
+print(classification_report(y_test, y_pred_scratch))
+print("Confusion Matrix:")
+print(confusion_matrix(y_test, y_pred_scratch))
