@@ -79,7 +79,3 @@ CNN workflows operate directly on CIFAR-10 images.
    - Loads `models/cnn_kernel5_best.pth`.
    - Computes accuracy, macro precision/recall/F1, per-class metrics, and confusion matrix.
    - Saves metrics to `models/cnn_<variant>_metrics.txt` and confusion matrix to `models/cnn_<variant>_confusion.npy`.
-
-## Applying Models
-- **Classical models (Naive Bayes / Decision Trees / MLPs):** Predictions on the held-out PCA test set are produced within their respective run scripts. To adapt them for new data, ensure you pass PCA-compressed features consistent with `createDataset.py` (i.e., same PCA model).
-- **CNNs:** Use `evaluateCNN.py` to generate predictions on the balanced CIFAR-10 test subset. For other datasets, adapt `get_limited_indices_by_class` and transforms as needed, keeping the class ordering consistent.
